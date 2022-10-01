@@ -28,6 +28,12 @@ public class PasswordValidator {
             throw new InvalidPasswordException("password should not be null");
         }
 
+        // Adding the lower case validation after null check as if there is not lower case char exists,
+        // then it is considered as invalid password
+        if (!password.chars().anyMatch(Character::isLowerCase)) {
+            throw new InvalidPasswordException("password should have one lowercase letter at least");
+        }
+
         return true;
     }
 }
