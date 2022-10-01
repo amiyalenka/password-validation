@@ -34,6 +34,11 @@ public class PasswordValidator {
             throw new InvalidPasswordException("password should have one lowercase letter at least");
         }
 
+        // Minimum length validation
+        if (password.length() <= 8) {
+            throw new InvalidPasswordException("password should be larger than 8 chars");
+        }
+
         return true;
     }
 }

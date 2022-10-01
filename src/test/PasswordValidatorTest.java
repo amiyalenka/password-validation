@@ -32,7 +32,12 @@ public class PasswordValidatorTest {
         PasswordValidator.validatePassword("pass12");
     }
 
-    // case#5 : Invalid password with only numbers, expect that it will throw InvalidPasswordException.
+    // case#5 : Invalid password with only numbers, no lowercase and uppercase char exists,
+    // expect that it will throw InvalidPasswordException.
+    @Test(expected = InvalidPasswordException.class)
+    public void invalidPasswordWithOnlyNumbers() throws InvalidPasswordException {
+        PasswordValidator.validatePassword("123456789");
+    }
 
     // case#6 : Valid password with length less than 9.
 
