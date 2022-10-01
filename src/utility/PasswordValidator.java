@@ -28,7 +28,7 @@ public class PasswordValidator {
     }
 
     /**
-     * Assuming the method will neither throw not let know the unsatisfied rules when the password valid.
+     * Assuming the method will neither throw exception nor let know the unsatisfied rules when the password valid.
      *
      * @param password password to be validated
      * @return boolean when password is valid
