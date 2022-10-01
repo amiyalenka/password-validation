@@ -112,8 +112,13 @@ public class PasswordValidatorTest {
 
     // case#2.2 : Invalid password with no lowercase character, expect that it will throw InvalidPasswordException.
     // if there is not lower case char exists, then it is considered as invalid password
+    @Test
     public void invalidPasswordWithNoLowerCaseCharCatchException() throws InvalidPasswordException {
-        //PasswordValidator.validatePassword("PASSWORD123");
+        try {
+            PasswordValidator.validatePassword("PASSWORD123");
+        } catch(InvalidPasswordException ipe) {
+            assertEquals("password should have one lowercase letter at least", ipe.getMessage());
+        }
     }
 
     // case#4.1 : inValid password with length less than 9 and no upper case character and no number exists,
