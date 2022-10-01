@@ -39,6 +39,11 @@ public class PasswordValidator {
             throw new InvalidPasswordException("password should be larger than 8 chars");
         }
 
+        // At-least one upper case validation
+        if (!password.chars().anyMatch(Character::isUpperCase)) {
+            throw new InvalidPasswordException("password should have one uppercase letter at least");
+        }
+
         return true;
     }
 }
