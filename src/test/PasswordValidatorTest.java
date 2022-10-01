@@ -27,20 +27,19 @@ public class PasswordValidatorTest {
         PasswordValidator.validatePassword("PASS12");
     }
 
-    // case#4 : inValid password with length less than 9 and no upper case character,
+    // case#4 : inValid password with length less than 9 and no upper case character and no number exists,
     // expect that it will throw InvalidPasswordException.
     @Test(expected = InvalidPasswordException.class)
-    public void invalidPasswordWithLengthLessThan9CharAndNoUppercaseChar() throws InvalidPasswordException {
-        PasswordValidator.validatePassword("pass12");
+    public void invalidPasswordWithLengthLessThan9CharAndNoUppercaseAndNoNumber() throws InvalidPasswordException {
+        PasswordValidator.validatePassword("password");
     }
 
-    // case#5 : Invalid password with only numbers, no lowercase and uppercase char exists,
+    // case#5 : Invalid password with only numbers, no lowercase, no uppercase and length greater than 9,
     // expect that it will throw InvalidPasswordException.
     @Test(expected = InvalidPasswordException.class)
     public void invalidPasswordWithOnlyNumbers() throws InvalidPasswordException {
         PasswordValidator.validatePassword("123456789");
     }
-
 
     // case#6 : Valid password which meets these conditions - not null, Lowercase, Uppercase,
     // number exists and length is greater than 9
