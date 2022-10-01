@@ -44,6 +44,11 @@ public class PasswordValidator {
             throw new InvalidPasswordException("password should have one uppercase letter at least");
         }
 
+        // At-least one number validation
+        if (!password.chars().anyMatch(Character::isDigit)) {
+            throw new InvalidPasswordException("password should have one number at least");
+        }
+
         return true;
     }
 }
