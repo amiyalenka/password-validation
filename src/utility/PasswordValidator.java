@@ -1,7 +1,6 @@
 package utility;
 
 import exception.InvalidPasswordException;
-
 import java.util.Objects;
 
 /**
@@ -12,6 +11,14 @@ public class PasswordValidator {
 
     public static void main(String arg[]) {
         String password = "October@01";
+        try {
+            validatePassword(password);
+            System.out.println("The given password is valid!");
+        } catch (InvalidPasswordException ipe) {
+            System.out.println("The given password is not valid!! " + ipe.getMessage());
+        }
+
+        password = "OCTOBER@01";
         try {
             validatePassword(password);
             System.out.println("The given password is valid!");
