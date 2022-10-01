@@ -105,7 +105,7 @@ public class PasswordValidatorTest {
     public void passwordIsNullCatchException() {
         try {
             PasswordValidator.validatePassword(null);
-        } catch(InvalidPasswordException ipe) {
+        } catch (InvalidPasswordException ipe) {
             assertEquals("password should not be null", ipe.getMessage());
         }
     }
@@ -113,18 +113,24 @@ public class PasswordValidatorTest {
     // case#2.2 : Invalid password with no lowercase character, expect that it will throw InvalidPasswordException.
     // if there is not lower case char exists, then it is considered as invalid password
     @Test
-    public void invalidPasswordWithNoLowerCaseCharCatchException() throws InvalidPasswordException {
+    public void invalidPasswordWithNoLowerCaseCharCatchException() {
         try {
             PasswordValidator.validatePassword("PASSWORD123");
-        } catch(InvalidPasswordException ipe) {
+        } catch (InvalidPasswordException ipe) {
             assertEquals("password should have one lowercase letter at least", ipe.getMessage());
         }
     }
 
     // case#4.1 : inValid password with length less than 9 and no upper case character and no number exists,
     // expect that it will throw InvalidPasswordException.
-    public void invalidPasswordWithLengthLessThan9CharAndNoUppercaseAndNoNumberWithCatch() throws InvalidPasswordException {
-        //PasswordValidator.validatePassword("password");
+    @Test
+    public void invalidPasswordWithLengthLessThan9CharAndNoUppercaseAndNoNumberWithCatch() {
+        try {
+            PasswordValidator.validatePassword("password");
+        } catch (InvalidPasswordException ipe) {
+            assertEquals("Error::password should be larger than 8 chars::password should have one uppercase " +
+                    "letter at least::password should have one number at least", ipe.getMessage());
+        }
     }
 
 }
