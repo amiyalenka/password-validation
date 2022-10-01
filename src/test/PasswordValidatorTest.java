@@ -12,6 +12,11 @@ public class PasswordValidatorTest {
     }
 
     // case#2 : Invalid password with no lowercase character, expect that it will throw InvalidPasswordException.
+    // if there is not lower case char exists, then it is considered as invalid password
+    @Test(expected = InvalidPasswordException.class)
+    public void invalidPasswordWithNoLowerCaseChar() throws InvalidPasswordException {
+        PasswordValidator.validatePassword("PASSWORD123");
+    }
 
     // case#3 : Invalid password with length less than 9, expect that it will throw InvalidPasswordException.
 
