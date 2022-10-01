@@ -4,6 +4,8 @@ import exception.InvalidPasswordException;
 import org.junit.Test;
 import utility.PasswordValidator;
 
+import static org.junit.Assert.assertTrue;
+
 /* not null, lower case are mandatory - 2 conditions are met here.
  uppercase, number, min length 9 are optionals where if any one condition meets will satisfy as valid password.*/
 public class PasswordValidatorTest {
@@ -43,35 +45,57 @@ public class PasswordValidatorTest {
 
     // case#6 : Valid password which meets these conditions - not null, Lowercase, Uppercase,
     // number exists and length is greater than 9
-
+    @Test
+    public void validPassword() throws InvalidPasswordException {
+        assertTrue(PasswordValidator.validatePassword("Password123"));
+    }
 
     // case#7 : Valid password which meets these conditions - not null, Lowercase, Uppercase,
     // but no number exists and length is less than 9
+    @Test
+    public void validPasswordWithNoNumberAndLengthLessThan9() throws InvalidPasswordException {
+        assertTrue(PasswordValidator.validatePassword("ValidPa"));
+    }
 
     // case#8 : Valid password which meets these conditions - not null, Lowercase, Uppercase,
     // but no number exists and length is greater than 8
+    @Test
+    public void validPasswordWithNoNumber() throws InvalidPasswordException {
+        assertTrue(PasswordValidator.validatePassword("ValidPassword"));
+    }
 
     // case#9 : Valid password which meets these conditions - not null, Lowercase, Uppercase,
     // but number exists and length is less than 9
-
+    @Test
+    public void validPasswordWithLengthLessThan9() throws InvalidPasswordException {
+        assertTrue(PasswordValidator.validatePassword("ValidPa8"));
+    }
 
     // case#10 : Valid password which meets these conditions - not null, Lowercase, number exists,
     // but no uppercase and length is less than 9
+    @Test
+    public void validPasswordWithNoUpperCaseAndLengthLessThan9() throws InvalidPasswordException {
+        assertTrue(PasswordValidator.validatePassword("validpa8"));
+    }
 
     // case#11 : Valid password which meets these conditions - not null, Lowercase, number exists,
     // but no uppercase and length is greater than 8
+    @Test
+    public void validPasswordWithNoUpperCase() throws InvalidPasswordException {
+        assertTrue(PasswordValidator.validatePassword("validpassword8"));
+    }
 
     // case#12 : Valid password which meets these conditions - not null, Lowercase, number exists,
     // but uppercase and length is less than 9
-
+    @Test
+    public void validPasswordWithUpperCaseAndLengthLessThan9() throws InvalidPasswordException {
+        assertTrue(PasswordValidator.validatePassword("ValidPa8"));
+    }
 
     // case#13 : Valid password which meets these conditions - not null, Lowercase, length greater than 8
     // but no uppercase and no number exists
-
-    // case#14 : Valid password which meets these conditions - not null, Lowercase, length greater than 8
-    // but no uppercase and number exists
-
-    // case#15 : Valid password which meets these conditions - not null, Lowercase, length greater than 8
-    // but uppercase and no number exists
-
+    @Test
+    public void validPasswordWithNoUpperCaseAndNoNumber() throws InvalidPasswordException {
+        assertTrue(PasswordValidator.validatePassword("validpassword"));
+    }
 }
