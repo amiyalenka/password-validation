@@ -1,7 +1,15 @@
 package test;
 
+import exception.InvalidPasswordException;
+import org.junit.Test;
+import utility.PasswordValidator;
+
 public class PasswordValidatorTest {
     // case#1 : Invalid password as null value, expect that it will throw InvalidPasswordException.
+    @Test(expected = InvalidPasswordException.class)
+    public void passwordIsNull() throws InvalidPasswordException {
+        PasswordValidator.validatePassword(null);
+    }
 
     // case#2 : Invalid password with no lowercase character, expect that it will throw InvalidPasswordException.
 
