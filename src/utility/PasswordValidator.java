@@ -20,35 +20,54 @@ public class PasswordValidator {
         }
     }
 
+    /**
+     * Assuming the method will neither throw not let know the unsatisfied rules when the password valid.
+     *
+     * @param password password to be validated
+     * @return boolean when password is valid
+     * @throws InvalidPasswordException throws InvalidPasswordException when password in invalid
+     */
     public static boolean validatePassword(String password) throws InvalidPasswordException {
 
         // If it is null then all other conditions will not be satisfied.
-        // Throwing this exception right away.
+        // So, password will be invalid, Throw exception when it is null.
         if (Objects.isNull(password)) {
             throw new InvalidPasswordException("password should not be null");
         }
 
-        // Adding the lower case validation after null check as if there is not lower case char exists,
-        // then it is considered as invalid password
+        // if there is no lower case letter then password is invalid, no further validation needed.
         if (!password.chars().anyMatch(Character::isLowerCase)) {
             throw new InvalidPasswordException("password should have one lowercase letter at least");
         }
 
+        // Create this message string which will be populated based on unsatisfied rules.
+        StringBuffer exceptionMessage = new StringBuffer("Error");
+
         // Minimum length validation
         if (password.length() <= 8) {
-            throw new InvalidPasswordException("password should be larger than 8 chars");
+            exceptionMessage.append("::password should be larger than 8 chars");
+        } else {
+            // if it reaches here then it meets any three conditions criteria as not null and lowercase are already met.
+            // Return here to avoid further processing, this logic is applicable for other validations below
+            return true;
         }
 
         // At-least one upper case validation
         if (!password.chars().anyMatch(Character::isUpperCase)) {
-            throw new InvalidPasswordException("password should have one uppercase letter at least");
+            exceptionMessage.append("::password should have one uppercase letter at least");
+        } else {
+            return true;
         }
 
         // At-least one number validation
         if (!password.chars().anyMatch(Character::isDigit)) {
-            throw new InvalidPasswordException("password should have one number at least");
+            exceptionMessage.append("::password should have one number at least");
+        } else {
+            return true;
         }
 
-        return true;
+        // Throw exception by consolidating all the invalid rules.
+        // Used StringBuffer above to append all the unsatisfied criteria's.
+        throw new InvalidPasswordException(exceptionMessage);
     }
 }

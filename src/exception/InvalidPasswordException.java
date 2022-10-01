@@ -6,11 +6,16 @@ package exception;
 public class InvalidPasswordException extends Exception {
 
     /**
-     *
      * @param message message to be added in the exception
      */
     public InvalidPasswordException(String message) {
         super(message);
     }
 
+    /**
+     * @param message message to be added in the exception
+     */
+    public InvalidPasswordException(StringBuffer message) {
+        super(String.valueOf(message));
+    }
 }
