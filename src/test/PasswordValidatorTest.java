@@ -4,6 +4,7 @@ import exception.InvalidPasswordException;
 import org.junit.Test;
 import utility.PasswordValidator;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /* not null, lower case are mandatory - 2 conditions are met here.
@@ -98,4 +99,27 @@ public class PasswordValidatorTest {
     public void validPasswordWithNoUpperCaseAndNoNumber() throws InvalidPasswordException {
         assertTrue(PasswordValidator.validatePassword("validpassword"));
     }
+
+    // case#1.1 : Invalid password as null value, expect that it will throw InvalidPasswordException.
+    @Test
+    public void passwordIsNullCatchException() {
+        try {
+            PasswordValidator.validatePassword(null);
+        } catch(InvalidPasswordException ipe) {
+            assertEquals("password should not be null", ipe.getMessage());
+        }
+    }
+
+    // case#2.2 : Invalid password with no lowercase character, expect that it will throw InvalidPasswordException.
+    // if there is not lower case char exists, then it is considered as invalid password
+    public void invalidPasswordWithNoLowerCaseCharCatchException() throws InvalidPasswordException {
+        //PasswordValidator.validatePassword("PASSWORD123");
+    }
+
+    // case#4.1 : inValid password with length less than 9 and no upper case character and no number exists,
+    // expect that it will throw InvalidPasswordException.
+    public void invalidPasswordWithLengthLessThan9CharAndNoUppercaseAndNoNumberWithCatch() throws InvalidPasswordException {
+        //PasswordValidator.validatePassword("password");
+    }
+
 }
