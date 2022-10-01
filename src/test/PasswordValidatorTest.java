@@ -4,6 +4,8 @@ import exception.InvalidPasswordException;
 import org.junit.Test;
 import utility.PasswordValidator;
 
+/* not null, lower case are mandatory - 2 conditions are met here.
+ uppercase, number, min length 9 are optionals where if any one condition meets will satisfy as valid password.*/
 public class PasswordValidatorTest {
     // case#1 : Invalid password as null value, expect that it will throw InvalidPasswordException.
     @Test(expected = InvalidPasswordException.class)
@@ -39,15 +41,38 @@ public class PasswordValidatorTest {
         PasswordValidator.validatePassword("123456789");
     }
 
-    // case#6 : Valid password with length less than 9.
 
-    // case#7 : Valid password with no uppercase character but meets 3 conditions - not null,
-    // lower case exists, length greater than 8 and also number exists.
+    // case#6 : Valid password which meets these conditions - not null, Lowercase, Uppercase,
+    // number exists and length is greater than 9
 
-    // case#8 : Valid password with no uppercase character but meets 3 conditions - not null, lower case exists,
-    // length greater than 8.
 
-    // case#9 : Valid password with no number
+    // case#7 : Valid password which meets these conditions - not null, Lowercase, Uppercase,
+    // but no number exists and length is less than 9
 
-    // case#10 : Valid password with all meeting criteria
+    // case#8 : Valid password which meets these conditions - not null, Lowercase, Uppercase,
+    // but no number exists and length is greater than 8
+
+    // case#9 : Valid password which meets these conditions - not null, Lowercase, Uppercase,
+    // but number exists and length is less than 9
+
+
+    // case#10 : Valid password which meets these conditions - not null, Lowercase, number exists,
+    // but no uppercase and length is less than 9
+
+    // case#11 : Valid password which meets these conditions - not null, Lowercase, number exists,
+    // but no uppercase and length is greater than 8
+
+    // case#12 : Valid password which meets these conditions - not null, Lowercase, number exists,
+    // but uppercase and length is less than 9
+
+
+    // case#13 : Valid password which meets these conditions - not null, Lowercase, length greater than 8
+    // but no uppercase and no number exists
+
+    // case#14 : Valid password which meets these conditions - not null, Lowercase, length greater than 8
+    // but no uppercase and number exists
+
+    // case#15 : Valid password which meets these conditions - not null, Lowercase, length greater than 8
+    // but uppercase and no number exists
+
 }
